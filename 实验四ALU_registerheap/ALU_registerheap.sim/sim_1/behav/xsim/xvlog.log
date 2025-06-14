@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/ALU_registerheap/ALU_registerheap.srcs/sources_1/new/arrayD.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module arrayD
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/ALU_registerheap/ALU_registerheap.srcs/sources_1/new/edge_D.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module edge_D
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/ALU_registerheap/ALU_registerheap.srcs/sim_1/new/test_arrayD.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module test_arrayD
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/ALU_registerheap/ALU_registerheap.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

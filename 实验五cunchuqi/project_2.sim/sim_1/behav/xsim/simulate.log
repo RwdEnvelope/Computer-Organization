@@ -1,0 +1,5 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module top_tb.uut.Data_RAM.inst.\native_mem_module.blk_mem_gen_v8_4_5_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+$stop called at time : 115 ns : File "E:/project/xilinx/cunchuqi/project_2.srcs/sim_1/new/toptest.v" Line 55

@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sat Jun 14 16:37:43 2025
+# Process ID: 63412
+# Current directory: E:/project/xilinx/实验四ALU_registerheap
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent42516 E:\project\xilinx\实验四ALU_registerheap\ALU_registerheap.xpr
+# Log file: E:/project/xilinx/实验四ALU_registerheap/vivado.log
+# Journal file: E:/project/xilinx/实验四ALU_registerheap\vivado.jou
+# Running On: DESKTOP-JOMNG4A, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 33968 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/project/xilinx/实验四ALU_registerheap/ALU_registerheap.xpr
+update_compile_order -fileset sources_1

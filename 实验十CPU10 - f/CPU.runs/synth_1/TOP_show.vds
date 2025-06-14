@@ -1,0 +1,345 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sat Jun 14 11:42:44 2025
+# Process ID: 59140
+# Current directory: E:/project/xilinx/CPU10 - f/CPU.runs/synth_1
+# Command line: vivado.exe -log TOP_show.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TOP_show.tcl
+# Log file: E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/TOP_show.vds
+# Journal file: E:/project/xilinx/CPU10 - f/CPU.runs/synth_1\vivado.jou
+# Running On: DESKTOP-JOMNG4A, OS: Windows, CPU Frequency: 2918 MHz, CPU Physical cores: 14, Host memory: 33968 MB
+#-----------------------------------------------------------
+source TOP_show.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {E:/project/xilinx/CPU10 - f/CPU.srcs/utils_1/imports/synth_1/TOP.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from E:/project/xilinx/CPU10 - f/CPU.srcs/utils_1/imports/synth_1/TOP.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top TOP_show -part xc7a100tfgg484-2L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tfgg484-2L
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 59996
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [E:/app/xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'CU' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:435]
+INFO: [Synth 8-9937] previous definition of design element 'CU' is here [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:229]
+CRITICAL WARNING: [Synth 8-9873] overwriting previous definition of module 'ID2' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ID2.v:248]
+INFO: [Synth 8-9937] previous definition of design element 'ID2' is here [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ID2.v:134]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1841.285 ; gain = 408.680
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_show' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP_show.v:23]
+INFO: [Synth 8-6157] synthesizing module 'TOP' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP.v:23]
+INFO: [Synth 8-6157] synthesizing module 'PC' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/PC.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'PC' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/PC.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ADDer' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ADDer.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ADDer' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ADDer.v:23]
+INFO: [Synth 8-6157] synthesizing module 'IM' [E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/.Xil/Vivado-59140-DESKTOP-JOMNG4A/realtime/IM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'IM' (0#1) [E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/.Xil/Vivado-59140-DESKTOP-JOMNG4A/realtime/IM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'IR' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/IR.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'IR' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/IR.v:23]
+INFO: [Synth 8-6157] synthesizing module 'Decoder' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/Decoder.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Decoder' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/Decoder.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ImmU' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ImmU.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ImmU' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ImmU.v:23]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/regfile.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/regfile.v:21]
+INFO: [Synth 8-6157] synthesizing module 'ALU_with_register' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ALU_with_register.v:23]
+INFO: [Synth 8-6157] synthesizing module 'register' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/register.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'register' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/register.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ALU' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ALU.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ALU.v:23]
+WARNING: [Synth 8-689] width (4) of port connection 'outdata' does not match port width (32) of module 'register' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ALU_with_register.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'ALU_with_register' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ALU_with_register.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ID2' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ID2.v:136]
+INFO: [Synth 8-226] default block is never used [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ID2.v:187]
+INFO: [Synth 8-6155] done synthesizing module 'ID2' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/ID2.v:136]
+INFO: [Synth 8-6157] synthesizing module 'CU' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:231]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:276]
+INFO: [Synth 8-6155] done synthesizing module 'CU' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:231]
+INFO: [Synth 8-6157] synthesizing module 'DM' [E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/.Xil/Vivado-59140-DESKTOP-JOMNG4A/realtime/DM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'DM' (0#1) [E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/.Xil/Vivado-59140-DESKTOP-JOMNG4A/realtime/DM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mux4to1' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux4to1.v:23]
+INFO: [Synth 8-226] default block is never used [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux4to1.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'mux4to1' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux4to1.v:23]
+WARNING: [Synth 8-7071] port 'in4' of module 'mux4to1' is unconnected for instance 'uu15' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP.v:58]
+WARNING: [Synth 8-7023] instance 'uu15' of module 'mux4to1' has 6 connections declared, but only 5 given [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP.v:58]
+INFO: [Synth 8-6155] done synthesizing module 'TOP' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP.v:23]
+INFO: [Synth 8-6157] synthesizing module 'mux8to1' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux8to1.v:22]
+INFO: [Synth 8-226] default block is never used [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux8to1.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'mux8to1' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/mux8to1.v:22]
+WARNING: [Synth 8-7071] port 'in7' of module 'mux8to1' is unconnected for instance 'uu2' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP_show.v:33]
+WARNING: [Synth 8-7023] instance 'uu2' of module 'mux8to1' has 10 connections declared, but only 9 given [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP_show.v:33]
+INFO: [Synth 8-6157] synthesizing module 'Tube' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/Tube.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'Tube' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/Tube.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_show' (0#1) [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/TOP_show.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 1939.930 ; gain = 507.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 1957.832 ; gain = 525.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 1957.832 ; gain = 525.227
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1957.832 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [e:/project/xilinx/CPU10 - f/CPU.gen/sources_1/ip/IM/IM/IM_in_context.xdc] for cell 'uu1/uu5'
+Finished Parsing XDC File [e:/project/xilinx/CPU10 - f/CPU.gen/sources_1/ip/IM/IM/IM_in_context.xdc] for cell 'uu1/uu5'
+Parsing XDC File [e:/project/xilinx/CPU10 - f/CPU.gen/sources_1/ip/DM/DM/DM_in_context.xdc] for cell 'uu1/uu13'
+Finished Parsing XDC File [e:/project/xilinx/CPU10 - f/CPU.gen/sources_1/ip/DM/DM/DM_in_context.xdc] for cell 'uu1/uu13'
+Parsing XDC File [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc]
+WARNING: [Vivado 12-507] No nets matched 'clk_im_IBUF'. [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc:9]
+WARNING: [Vivado 12-507] No nets matched 'reset_IBUF'. [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc:12]
+WARNING: [Vivado 12-507] No nets matched 'clk_IBUF'. [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc:37]
+Finished Parsing XDC File [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/TOP_show_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/project/xilinx/CPU10 - f/CPU.srcs/constrs_1/new/top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/TOP_show_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/TOP_show_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2070.570 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2070.570 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [E:/app/xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for uu1/uu5. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for uu1/uu13. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'ST_reg' in module 'CU'
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_Next_ST_reg' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:277]
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_onehot_Next_ST_reg' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:277]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    Idle |                             0000 |                            00000
+                      S1 |                             0001 |                            00001
+                     S11 |                             0010 |                            01011
+                      S2 |                             0011 |                            00010
+                     S13 |                             0100 |                            01101
+                     S14 |                             0101 |                            01110
+                      S3 |                             0110 |                            00011
+                      S5 |                             0111 |                            00101
+                      S4 |                             1000 |                            00100
+                      S7 |                             1001 |                            00111
+                      S8 |                             1010 |                            01000
+                      S9 |                             1011 |                            01001
+                     S10 |                             1100 |                            01010
+                     S12 |                             1101 |                            01100
+                      S6 |                             1110 |                            00110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'ST_reg' using encoding 'sequential' in module 'CU'
+WARNING: [Synth 8-327] inferring latch for variable 'FSM_sequential_Next_ST_reg' [E:/project/xilinx/CPU10 - f/CPU.srcs/sources_1/new/CU.v:277]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:14 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   33 Bit       Adders := 1     
+	   3 Input   33 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 40    
+	               10 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   6 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 1     
+	   4 Input   32 Bit        Muxes := 2     
+	  15 Input    5 Bit        Muxes := 1     
+	  11 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 1     
+	  10 Input    4 Bit        Muxes := 1     
+	   9 Input    4 Bit        Muxes := 1     
+	  15 Input    4 Bit        Muxes := 1     
+	  30 Input    4 Bit        Muxes := 1     
+	   6 Input    3 Bit        Muxes := 1     
+	  15 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 32    
+	  12 Input    1 Bit        Muxes := 2     
+	   9 Input    1 Bit        Muxes := 8     
+	  14 Input    1 Bit        Muxes := 2     
+	  15 Input    1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design TOP_show has port enable driven by constant 1
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:21 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:03 ; elapsed = 00:00:25 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:26 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:03 ; elapsed = 00:00:26 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |IM            |         1|
+|2     |DM            |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |DM     |     1|
+|2     |IM     |     1|
+|3     |BUFG   |     2|
+|4     |CARRY4 |    42|
+|5     |LUT1   |     5|
+|6     |LUT2   |    59|
+|7     |LUT3   |    49|
+|8     |LUT4   |   150|
+|9     |LUT5   |   273|
+|10    |LUT6   |   968|
+|11    |MUXF7  |   288|
+|12    |MUXF8  |    16|
+|13    |FDCE   |  1249|
+|14    |LD     |     4|
+|15    |IBUF   |     6|
+|16    |OBUF   |    16|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:03 ; elapsed = 00:00:29 . Memory (MB): peak = 2070.570 ; gain = 637.965
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:28 . Memory (MB): peak = 2070.570 ; gain = 525.227
+Synthesis Optimization Complete : Time (s): cpu = 00:00:03 ; elapsed = 00:00:30 . Memory (MB): peak = 2070.570 ; gain = 637.965
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 2070.570 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 350 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2070.570 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  LD => LDCE: 4 instances
+
+Synth Design complete, checksum: 10a3648f
+INFO: [Common 17-83] Releasing license: Synthesis
+67 Infos, 14 Warnings, 2 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:53 . Memory (MB): peak = 2070.570 ; gain = 1032.293
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Common 17-1381] The checkpoint 'E:/project/xilinx/CPU10 - f/CPU.runs/synth_1/TOP_show.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file TOP_show_utilization_synth.rpt -pb TOP_show_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 14 11:43:46 2025...

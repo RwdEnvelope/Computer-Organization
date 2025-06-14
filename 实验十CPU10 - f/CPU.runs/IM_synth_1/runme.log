@@ -1,0 +1,21 @@
+
+*** Running vivado
+    with args -log IM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source IM.tcl
+
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source IM.tcl -notrace
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: IM
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 75e912fd13f69a3f to dir: E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/project/xilinx/CPU10 - f/CPU.cache/ip/2022.2/7/5/75e912fd13f69a3f/IM.dcp to E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1/IM.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/project/xilinx/CPU10 - f/CPU.cache/ip/2022.2/7/5/75e912fd13f69a3f/IM_sim_netlist.v to E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1/IM_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/project/xilinx/CPU10 - f/CPU.cache/ip/2022.2/7/5/75e912fd13f69a3f/IM_sim_netlist.vhdl to E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1/IM_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/project/xilinx/CPU10 - f/CPU.cache/ip/2022.2/7/5/75e912fd13f69a3f/IM_stub.v to E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1/IM_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/project/xilinx/CPU10 - f/CPU.cache/ip/2022.2/7/5/75e912fd13f69a3f/IM_stub.vhdl to E:/project/xilinx/CPU10 - f/CPU.runs/IM_synth_1/IM_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP IM, cache-ID = 75e912fd13f69a3f.
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 14 00:19:13 2025...

@@ -1,0 +1,38 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.gen/sources_1/ip/DM/sim/DM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DM
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.gen/sources_1/ip/IM/sim/IM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module IM
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ADDer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ADDer
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ALU_with_register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_with_register
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/CU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CU
+INFO: [VRFC 10-311] analyzing module CU
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'CU' [E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/CU.v:231]
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ID2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ID2
+INFO: [VRFC 10-311] analyzing module ID2
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'ID2' [E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ID2.v:136]
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/IR.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module IR
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/ImmU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ImmU
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/PC.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PC
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/TOP.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TOP
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/mux4to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux4to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/regfile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sources_1/new/register.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.srcs/sim_1/new/TOP_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TOP_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/project/xilinx/实验十CPU10 - f/CPU.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
