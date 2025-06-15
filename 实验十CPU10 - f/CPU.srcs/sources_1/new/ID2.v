@@ -19,25 +19,24 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module ID2 (                                           // æŒ‡ä»¤ç±»å‹è¯†åˆ«ä¸ALUæ“ä½œç ç”Ÿæˆæ¨¡å—
+    input  [6:0] opcode,                              // è¾“å…¥ï¼šæ“ä½œç å­—æ®µ
+    input  [2:0] funct3,                              // è¾“å…¥ï¼šåŠŸèƒ½ç funct3
+    input  [6:0] funct7,                              // è¾“å…¥ï¼šåŠŸèƒ½ç funct7
 
-module ID2 (
-    input  [6:0] opcode,
-    input  [2:0] funct3,
-    input  [6:0] funct7,
-
-    output reg       IS_R,
-    output reg       IS_IMM,
-    output reg       IS_LUI,
-    output reg       IS_LW,
-    output reg       IS_SW,
-    output reg       IS_BEQ,
-    output reg       IS_JAL,
-    output reg       IS_JALR,
-    output reg [3:0] ALU_OP
+    output reg       IS_R,                            // Rå‹æŒ‡ä»¤æ ‡å¿—
+    output reg       IS_IMM,                          // Iå‹ç«‹å³æ•°æŒ‡ä»¤æ ‡å¿—ï¼ˆå¦‚ADDIï¼‰
+    output reg       IS_LUI,                          // Uå‹LUIæŒ‡ä»¤æ ‡å¿—
+    output reg       IS_LW,                           // LoadæŒ‡ä»¤æ ‡å¿—
+    output reg       IS_SW,                           // StoreæŒ‡ä»¤æ ‡å¿—
+    output reg       IS_BEQ,                          // åˆ†æ”¯æŒ‡ä»¤æ ‡å¿—
+    output reg       IS_JAL,                          // JALè·³è½¬æŒ‡ä»¤æ ‡å¿—
+    output reg       IS_JALR,                         // JALRè·³è½¬æŒ‡ä»¤æ ‡å¿—
+    output reg [3:0] ALU_OP                           // ALUæ“ä½œé€‰æ‹©
 );
 
     always @(*) begin
-        // Ä¬ÈÏÖµ
+        // æ‰€æœ‰æ§åˆ¶ä¿¡å·é»˜è®¤æ¸…é›¶
         IS_R    = 0;
         IS_IMM  = 0;
         IS_LUI  = 0;
@@ -46,11 +45,11 @@ module ID2 (
         IS_BEQ  = 0;
         IS_JAL  = 0;
         IS_JALR = 0;
-        ALU_OP  = 4'b1111;
+        ALU_OP  = 4'b1111;                             // é»˜è®¤æ— æ•ˆæ“ä½œ
 
         case (opcode)
 
-            // R-type
+            // -------- R-type æŒ‡ä»¤è¯†åˆ« --------
             7'b0110011: begin
                 IS_R = 1;
                 case ({funct7, funct3})
@@ -59,16 +58,16 @@ module ID2 (
                     {7'b0000000, 3'b111}: ALU_OP = 4'b0111; // AND
                     {7'b0000000, 3'b110}: ALU_OP = 4'b0110; // OR
                     {7'b0000000, 3'b100}: ALU_OP = 4'b0100; // XOR
-                    {7'b0000000, 3'b001}: ALU_OP = 4'b0001; // SLL
-                    {7'b0000000, 3'b101}: ALU_OP = 4'b0101; // SRL
-                    {7'b0100000, 3'b101}: ALU_OP = 4'b1101; // SRA
-                    {7'b0000000, 3'b010}: ALU_OP = 4'b0010; // SLT
-                    {7'b0000000, 3'b011}: ALU_OP = 4'b0011; // SLTU
-                    default: ALU_OP = 4'b1111;
+                    {7'b0000000, 3'b001}: ALU_OP = 4'b0001; // SLLï¼ˆé€»è¾‘å·¦ç§»ï¼‰
+                    {7'b0000000, 3'b101}: ALU_OP = 4'b0101; // SRLï¼ˆé€»è¾‘å³ç§»ï¼‰
+                    {7'b0100000, 3'b101}: ALU_OP = 4'b1101; // SRAï¼ˆç®—æœ¯å³ç§»ï¼‰
+                    {7'b0000000, 3'b010}: ALU_OP = 4'b0010; // SLTï¼ˆæœ‰ç¬¦å·å°äºï¼‰
+                    {7'b0000000, 3'b011}: ALU_OP = 4'b0011; // SLTUï¼ˆæ— ç¬¦å·å°äºï¼‰
+                    default: ALU_OP = 4'b1111;              // æœªçŸ¥æŒ‡ä»¤
                 endcase
             end
 
-            // I-type arithmetic
+            // -------- I-type ç®—æœ¯ç±»æŒ‡ä»¤è¯†åˆ« --------
             7'b0010011: begin
                 IS_IMM = 1;
                 case (funct3)
@@ -90,157 +89,44 @@ module ID2 (
                 endcase
             end
 
-            // U-type LUI
+            // -------- U-type æŒ‡ä»¤ï¼šLUI --------
             7'b0110111: begin
                 IS_LUI = 1;
-                ALU_OP = 4'b1010; // LUI: imm << 12
+                ALU_OP = 4'b1010; // LUI å®ç°ï¼šimm << 12
             end
 
-            // I-type Load
+            // -------- I-type Load æŒ‡ä»¤ --------
             7'b0000011: begin
                 IS_LW = 1;
-                ALU_OP = 4'b0000; // LW uses address calc: rs1 + imm
+                ALU_OP = 4'b0000; // LWï¼šrs1 + imm åœ°å€è®¡ç®—
             end
 
-            // S-type Store
+            // -------- S-type Store æŒ‡ä»¤ --------
             7'b0100011: begin
                 IS_SW = 1;
-                ALU_OP = 4'b0000; // SW also uses address calc
+                ALU_OP = 4'b0000; // SWï¼šrs1 + imm åœ°å€è®¡ç®—
             end
 
-            // B-type Branch Equal
+            // -------- B-type åˆ†æ”¯æŒ‡ä»¤ --------
             7'b1100011: begin
                 IS_BEQ = 1;
-                ALU_OP = 4'b1000; // BEQ uses subtraction (rs1 - rs2)
+                ALU_OP = 4'b1000; // BEQï¼šä½¿ç”¨å‡æ³•æ¯”è¾ƒ rs1 - rs2
             end
 
-            // J-type JAL
+            // -------- J-type JAL è·³è½¬æŒ‡ä»¤ --------
             7'b1101111: begin
                 IS_JAL = 1;
+                // ä¸è®¾ç½® ALU_OPï¼Œè·³è½¬ç›®æ ‡ç”± PC + imm å†³å®š
             end
 
-            // I-type JALR
+            // -------- I-type JALR è·³è½¬æŒ‡ä»¤ --------
             7'b1100111: begin
                 IS_JALR = 1;
-                ALU_OP = 4'b1000; // JALR Ò²Ê¹ÓÃ rs1 + imm »ò¼õ·¨
+                ALU_OP = 4'b1000; // JALR åŒæ ·éœ€è¦åœ°å€è®¡ç®— rs1 + imm
             end
 
             default: begin
-                // ËùÓĞÀàĞÍÇåÁã£¬ALU_OP Ä¬ÈÏ
-            end
-        endcase
-    end
-
-endmodule
-
-module ID2 (                                           // Ö¸ÁîÀàĞÍÊ¶±ğÓëALU²Ù×÷ÂëÉú³ÉÄ£¿é
-    input  [6:0] opcode,                              // ÊäÈë£º²Ù×÷Âë×Ö¶Î
-    input  [2:0] funct3,                              // ÊäÈë£º¹¦ÄÜÂëfunct3
-    input  [6:0] funct7,                              // ÊäÈë£º¹¦ÄÜÂëfunct7
-
-    output reg       IS_R,                            // RĞÍÖ¸Áî±êÖ¾
-    output reg       IS_IMM,                          // IĞÍÁ¢¼´ÊıÖ¸Áî±êÖ¾£¨ÈçADDI£©
-    output reg       IS_LUI,                          // UĞÍLUIÖ¸Áî±êÖ¾
-    output reg       IS_LW,                           // LoadÖ¸Áî±êÖ¾
-    output reg       IS_SW,                           // StoreÖ¸Áî±êÖ¾
-    output reg       IS_BEQ,                          // ·ÖÖ§Ö¸Áî±êÖ¾
-    output reg       IS_JAL,                          // JALÌø×ªÖ¸Áî±êÖ¾
-    output reg       IS_JALR,                         // JALRÌø×ªÖ¸Áî±êÖ¾
-    output reg [3:0] ALU_OP                           // ALU²Ù×÷Ñ¡Ôñ
-);
-
-    always @(*) begin
-        // ËùÓĞ¿ØÖÆĞÅºÅÄ¬ÈÏÇåÁã
-        IS_R    = 0;
-        IS_IMM  = 0;
-        IS_LUI  = 0;
-        IS_LW   = 0;
-        IS_SW   = 0;
-        IS_BEQ  = 0;
-        IS_JAL  = 0;
-        IS_JALR = 0;
-        ALU_OP  = 4'b1111;                             // Ä¬ÈÏÎŞĞ§²Ù×÷
-
-        case (opcode)
-
-            // -------- R-type Ö¸ÁîÊ¶±ğ --------
-            7'b0110011: begin
-                IS_R = 1;
-                case ({funct7, funct3})
-                    {7'b0000000, 3'b000}: ALU_OP = 4'b0000; // ADD
-                    {7'b0100000, 3'b000}: ALU_OP = 4'b1000; // SUB
-                    {7'b0000000, 3'b111}: ALU_OP = 4'b0111; // AND
-                    {7'b0000000, 3'b110}: ALU_OP = 4'b0110; // OR
-                    {7'b0000000, 3'b100}: ALU_OP = 4'b0100; // XOR
-                    {7'b0000000, 3'b001}: ALU_OP = 4'b0001; // SLL£¨Âß¼­×óÒÆ£©
-                    {7'b0000000, 3'b101}: ALU_OP = 4'b0101; // SRL£¨Âß¼­ÓÒÒÆ£©
-                    {7'b0100000, 3'b101}: ALU_OP = 4'b1101; // SRA£¨ËãÊõÓÒÒÆ£©
-                    {7'b0000000, 3'b010}: ALU_OP = 4'b0010; // SLT£¨ÓĞ·ûºÅĞ¡ÓÚ£©
-                    {7'b0000000, 3'b011}: ALU_OP = 4'b0011; // SLTU£¨ÎŞ·ûºÅĞ¡ÓÚ£©
-                    default: ALU_OP = 4'b1111;              // Î´ÖªÖ¸Áî
-                endcase
-            end
-
-            // -------- I-type ËãÊõÀàÖ¸ÁîÊ¶±ğ --------
-            7'b0010011: begin
-                IS_IMM = 1;
-                case (funct3)
-                    3'b000: ALU_OP = 4'b0000; // ADDI
-                    3'b010: ALU_OP = 4'b0010; // SLTI
-                    3'b011: ALU_OP = 4'b0011; // SLTIU
-                    3'b100: ALU_OP = 4'b0100; // XORI
-                    3'b110: ALU_OP = 4'b0110; // ORI
-                    3'b111: ALU_OP = 4'b0111; // ANDI
-                    3'b001: ALU_OP = 4'b0001; // SLLI
-                    3'b101: begin
-                        case (funct7)
-                            7'b0000000: ALU_OP = 4'b0101; // SRLI
-                            7'b0100000: ALU_OP = 4'b1101; // SRAI
-                            default:    ALU_OP = 4'b1111;
-                        endcase
-                    end
-                    default: ALU_OP = 4'b1111;
-                endcase
-            end
-
-            // -------- U-type Ö¸Áî£ºLUI --------
-            7'b0110111: begin
-                IS_LUI = 1;
-                ALU_OP = 4'b1010; // LUI ÊµÏÖ£ºimm << 12
-            end
-
-            // -------- I-type Load Ö¸Áî --------
-            7'b0000011: begin
-                IS_LW = 1;
-                ALU_OP = 4'b0000; // LW£ºrs1 + imm µØÖ·¼ÆËã
-            end
-
-            // -------- S-type Store Ö¸Áî --------
-            7'b0100011: begin
-                IS_SW = 1;
-                ALU_OP = 4'b0000; // SW£ºrs1 + imm µØÖ·¼ÆËã
-            end
-
-            // -------- B-type ·ÖÖ§Ö¸Áî --------
-            7'b1100011: begin
-                IS_BEQ = 1;
-                ALU_OP = 4'b1000; // BEQ£ºÊ¹ÓÃ¼õ·¨±È½Ï rs1 - rs2
-            end
-
-            // -------- J-type JAL Ìø×ªÖ¸Áî --------
-            7'b1101111: begin
-                IS_JAL = 1;
-                // ²»ÉèÖÃ ALU_OP£¬Ìø×ªÄ¿±êÓÉ PC + imm ¾ö¶¨
-            end
-
-            // -------- I-type JALR Ìø×ªÖ¸Áî --------
-            7'b1100111: begin
-                IS_JALR = 1;
-                ALU_OP = 4'b1000; // JALR Í¬ÑùĞèÒªµØÖ·¼ÆËã rs1 + imm
-            end
-
-            default: begin
-                // ËùÓĞ±êÖ¾ĞÅºÅÒÑÔÚ¿ªÍ·ÇåÁã£¬Ä¬ÈÏ ALU_OP ÎªÎŞĞ§
+                // æ‰€æœ‰æ ‡å¿—ä¿¡å·å·²åœ¨å¼€å¤´æ¸…é›¶ï¼Œé»˜è®¤ ALU_OP ä¸ºæ— æ•ˆ
             end
         endcase
     end
