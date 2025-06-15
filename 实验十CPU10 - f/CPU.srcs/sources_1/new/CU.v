@@ -21,262 +21,54 @@
 
 
 module CU (
-    input clk,
-    input rst_n,
-    input IS_R,
-    input IS_IMM,
-    input IS_LUI,
-    input IS_LW,
-    input IS_SW,
-    input IS_BEQ,
-    input IS_JAL,
-    input IS_JALR,
-    input [3:0] ALU_OP,
-    input ZF,
+    input clk,                    // æ—¶é’Ÿä¿¡å·
+    input rst_n,                  // å¼‚æ­¥å¤ä½ä¿¡å·ï¼ˆé«˜æœ‰æ•ˆï¼‰
 
-    output reg PC_Write,
-    output reg PC0_Write,
-    output reg [1:0] PC_s,
-    output reg IR_Write,
-    output reg Reg_Write,
-    output reg Mem_Write,
-    output reg rs2_imm_s,
-    output reg [1:0] w_data_s,
-    output reg [3:0] ALU_OP_o
+    // æ¥è‡ªæŒ‡ä»¤è¯‘ç å™¨çš„ä¿¡å·ï¼Œç”¨äºåˆ¤æ–­æŒ‡ä»¤ç±»å‹
+    input IS_R,                   // æ˜¯å¦ä¸ºRå‹æŒ‡ä»¤
+    input IS_IMM,                 // æ˜¯å¦ä¸ºIå‹ç«‹å³æ•°æŒ‡ä»¤
+    input IS_LUI,                 // æ˜¯å¦ä¸ºLUIæŒ‡ä»¤
+    input IS_LW,                  // æ˜¯å¦ä¸ºLoadæŒ‡ä»¤
+    input IS_SW,                  // æ˜¯å¦ä¸ºStoreæŒ‡ä»¤
+    input IS_BEQ,                 // æ˜¯å¦ä¸ºåˆ†æ”¯BEQæŒ‡ä»¤
+    input IS_JAL,                 // æ˜¯å¦ä¸ºJALæŒ‡ä»¤
+    input IS_JALR,                // æ˜¯å¦ä¸ºJALRæŒ‡ä»¤
+    input [3:0] ALU_OP,           // æ¥è‡ªè¯‘ç å™¨çš„ALUæ“ä½œç 
+    input ZF,                     // é›¶æ ‡å¿—ä½ï¼ˆç”¨äºBEQåˆ¤æ–­ï¼‰
+
+    // æ§åˆ¶ä¿¡å·è¾“å‡º
+    output reg PC_Write,          // æ˜¯å¦å†™PC
+    output reg PC0_Write,         // æ˜¯å¦ä¿å­˜PCåˆ°PC0
+    output reg [1:0] PC_s,        // PCé€‰æ‹©å™¨æ§åˆ¶
+    output reg IR_Write,          // æ˜¯å¦å†™æŒ‡ä»¤å¯„å­˜å™¨
+    output reg Reg_Write,         // æ˜¯å¦å†™å¯„å­˜å™¨å †
+    output reg Mem_Write,         // æ˜¯å¦å†™å­˜å‚¨å™¨
+    output reg rs2_imm_s,         // æ“ä½œæ•°Bé€‰æ‹©ï¼ˆ1è¡¨ç¤ºç«‹å³æ•°ï¼‰
+    output reg [1:0] w_data_s,    // å†™å›æ•°æ®æºé€‰æ‹©
+    output reg [3:0] ALU_OP_o     // æœ€ç»ˆé€å…¥ALUçš„æ“ä½œç 
 );
 
-    // ×´Ì¬¶¨Òå
+    // çŠ¶æ€ç¼–ç å®šä¹‰
     parameter Idle = 5'd0, S1 = 5'd1, S2 = 5'd2, S3 = 5'd3, S4 = 5'd4,
               S5 = 5'd5, S6 = 5'd6, S7 = 5'd7, S8 = 5'd8, S9 = 5'd9,
               S10 = 5'd10, S11 = 5'd11, S12 = 5'd12, S13 = 5'd13, S14 = 5'd14;
 
-    reg [4:0] ST, Next_ST;
+    reg [4:0] ST, Next_ST; // å½“å‰çŠ¶æ€å’Œä¸‹ä¸€çŠ¶æ€
 
-    // ×´Ì¬¼Ä´æÆ÷
+    // çŠ¶æ€å¯„å­˜å™¨ï¼šåœ¨æ—¶é’Ÿä¸Šå‡æ²¿æˆ–å¤ä½æ—¶æ›´æ–°å½“å‰çŠ¶æ€
     always @(posedge clk or posedge rst_n) begin
         if (rst_n)
-            ST <= Idle;
+            ST <= Idle;         // å¤ä½è¿›å…¥ Idle
         else
-            ST <= Next_ST;  // ¡û ÄãÂ©Ğ´ÁËÕâ¾ä£¡£¡£¡
+            ST <= Next_ST;      // æ­£å¸¸çŠ¶æ€è½¬ç§»
     end
 
-    // ´ÎÌ¬Âß¼­
+    // æ¬¡æ€é€»è¾‘ç»„åˆåˆ¤æ–­
     always @(*) begin
         case (ST)
-            Idle: Next_ST = S1;
+            Idle: Next_ST = S1; // åˆå§‹çŠ¶æ€è¿›å…¥S1å‡†å¤‡æ›´æ–°PC
             S1: begin
-                if (IS_JAL) Next_ST = S11;
-                else if (IS_SW)   Next_ST = S2;
-                else if (IS_JALR) Next_ST = S2;
-                else if (IS_LW)   Next_ST = S2;
-                else if (IS_BEQ)  Next_ST = S2;
-                else if (IS_R)    Next_ST = S2;
-                else if (IS_IMM)  Next_ST = S2;
-                else if (IS_LUI)  Next_ST = S6;
-                else              Next_ST = S1;   
-            end
-            S2: begin
-                if (IS_BEQ)  Next_ST = S13;
-                else if (IS_R)    Next_ST = S3;
-                else if (IS_IMM)  Next_ST = S5;
-                else if (IS_SW)   Next_ST = S7;
-                else if (IS_JALR) Next_ST = S7;
-                else if (IS_LW)   Next_ST = S7;
-                else              Next_ST = S2;
-            end
-            S3, S5: Next_ST = S4;
-            S6:     Next_ST =Idle;
-            S4:     Next_ST = Idle;
-            S7:  begin   
-                if (IS_LW)  Next_ST = S8;
-                else if (IS_SW)   Next_ST = S10;
-                else if (IS_JALR) Next_ST = S12;
-                else Next_ST = S7;
-            end
-            S8:     Next_ST = S9;
-            S9:     Next_ST = Idle;
-            S10:    Next_ST = Idle;
-            S11:    Next_ST = Idle;
-            S12:    Next_ST = Idle;
-            S14:    Next_ST = Idle;
-            S13:    Next_ST = S14;
-            default:Next_ST = Idle;
-        endcase
-    end
-
-    // ¿ØÖÆĞÅºÅÊä³ö
-    always @(posedge clk or posedge rst_n) begin
-    if (rst_n) begin
-        PC_Write   <= 0;
-        PC0_Write  <= 0;
-        PC_s       <= 2'b00;
-        IR_Write   <= 0;
-        Reg_Write  <= 0;
-        Mem_Write  <= 0;
-        ALU_OP_o   <= 4'b0000;
-        rs2_imm_s  <= 0;
-        w_data_s   <= 2'b00;
-    end else begin
-        // Ä¬ÈÏÈ«²¿À­µÍ
-        PC_Write   <= 0;
-        PC0_Write  <= 0;
-        PC_s       <= 2'b00;
-        IR_Write   <= 0;
-        Reg_Write  <= 0;
-        Mem_Write  <= 0;
-        ALU_OP_o   <= ALU_OP;
-        rs2_imm_s  <= 0;
-        w_data_s   <= 2'b00;
-
-        case (ST)
-            // ---------- Idle£º½ö¸ºÔğÈ¡Ö¸ ----------
-            Idle: begin
-                IR_Write <= 1;  // È¡Ö¸
-                $display(">> µ±Ç°×´Ì¬ = Idle (È¡Ö¸), time = %t", $time);
-            end
-
-            // ---------- S1£ºPC ¡û PC+4£¬PC0 ¡û PC ----------
-            S1: begin
-                PC_Write  <= 1;
-                PC0_Write <= 1;
-                PC_s      <= 2'b00;
-                $display(">> µ±Ç°×´Ì¬ = S1 (PC¸üĞÂ), time = %t", $time);
-            end
-
-            S2: begin
-                $display(">> µ±Ç°×´Ì¬ = S2, time = %t", $time);
-            end
-
-            S3: begin
-                ALU_OP_o <= ALU_OP;
-                rs2_imm_s <= 0;
-                $display(">> µ±Ç°×´Ì¬ = S3, time = %t", $time);
-            end
-
-            S4: begin
-                Reg_Write <= 1;
-                w_data_s <= 2'b00;
-                $display(">> µ±Ç°×´Ì¬ = S4, time = %t", $time);
-            end
-
-            S5: begin
-                rs2_imm_s <= 1;
-                ALU_OP_o <= ALU_OP;
-                $display(">> µ±Ç°×´Ì¬ = S5, time = %t", $time);
-            end
-
-            S6: begin
-                Reg_Write <= 1;
-                w_data_s  <= 2'b01;
-                $display(">> µ±Ç°×´Ì¬ = S6 (LUI), time = %t", $time);
-            end
-
-            S7: begin
-                rs2_imm_s <= 1;
-                ALU_OP_o  <= 4'b0000;
-                $display(">> µ±Ç°×´Ì¬ = S7, time = %t", $time);
-            end
-
-            S8: begin
-                $display(">> µ±Ç°×´Ì¬ = S8, time = %t", $time);
-            end
-
-            S9: begin
-                Reg_Write <= 1;
-                w_data_s  <= 2'b10;
-                $display(">> µ±Ç°×´Ì¬ = S9, time = %t", $time);
-            end
-
-            S10: begin
-                Mem_Write <= 1;
-                $display(">> µ±Ç°×´Ì¬ = S10, time = %t", $time);
-            end
-
-            S11: begin
-                PC_Write  <= 1;
-                PC_s      <= 2'b01;
-                Reg_Write <= 1;
-                w_data_s  <= 2'b11;
-                $display(">> µ±Ç°×´Ì¬ = S11 (JAL), time = %t", $time);
-            end
-
-            S12: begin
-                PC_Write  <= 1;
-                PC_s      <= 2'b10;
-                Reg_Write <= 1;
-                w_data_s  <= 2'b11;
-                $display(">> µ±Ç°×´Ì¬ = S12 (JALR), time = %t", $time);
-            end
-
-            S13: begin
-                ALU_OP_o <= 4'b1000;
-                $display(">> µ±Ç°×´Ì¬ = S13 (BEQ cmp), time = %t", $time);
-            end
-
-            S14: begin
-                PC_Write <= ZF;
-                PC_s     <= 2'b01;
-                $display(">> µ±Ç°×´Ì¬ = S14 (BEQ jump), time = %t", $time);
-            end
-
-            default: begin
-                $display(">> µ±Ç°×´Ì¬ = Unknown, time = %t", $time);
-            end
-        endcase
-    end
-end
-
-endmodule
-
-module CU (
-    input clk,                    // Ê±ÖÓĞÅºÅ
-    input rst_n,                  // Òì²½¸´Î»ĞÅºÅ£¨¸ßÓĞĞ§£©
-
-    // À´×ÔÖ¸ÁîÒëÂëÆ÷µÄĞÅºÅ£¬ÓÃÓÚÅĞ¶ÏÖ¸ÁîÀàĞÍ
-    input IS_R,                   // ÊÇ·ñÎªRĞÍÖ¸Áî
-    input IS_IMM,                 // ÊÇ·ñÎªIĞÍÁ¢¼´ÊıÖ¸Áî
-    input IS_LUI,                 // ÊÇ·ñÎªLUIÖ¸Áî
-    input IS_LW,                  // ÊÇ·ñÎªLoadÖ¸Áî
-    input IS_SW,                  // ÊÇ·ñÎªStoreÖ¸Áî
-    input IS_BEQ,                 // ÊÇ·ñÎª·ÖÖ§BEQÖ¸Áî
-    input IS_JAL,                 // ÊÇ·ñÎªJALÖ¸Áî
-    input IS_JALR,                // ÊÇ·ñÎªJALRÖ¸Áî
-    input [3:0] ALU_OP,           // À´×ÔÒëÂëÆ÷µÄALU²Ù×÷Âë
-    input ZF,                     // Áã±êÖ¾Î»£¨ÓÃÓÚBEQÅĞ¶Ï£©
-
-    // ¿ØÖÆĞÅºÅÊä³ö
-    output reg PC_Write,          // ÊÇ·ñĞ´PC
-    output reg PC0_Write,         // ÊÇ·ñ±£´æPCµ½PC0
-    output reg [1:0] PC_s,        // PCÑ¡ÔñÆ÷¿ØÖÆ
-    output reg IR_Write,          // ÊÇ·ñĞ´Ö¸Áî¼Ä´æÆ÷
-    output reg Reg_Write,         // ÊÇ·ñĞ´¼Ä´æÆ÷¶Ñ
-    output reg Mem_Write,         // ÊÇ·ñĞ´´æ´¢Æ÷
-    output reg rs2_imm_s,         // ²Ù×÷ÊıBÑ¡Ôñ£¨1±íÊ¾Á¢¼´Êı£©
-    output reg [1:0] w_data_s,    // Ğ´»ØÊı¾İÔ´Ñ¡Ôñ
-    output reg [3:0] ALU_OP_o     // ×îÖÕËÍÈëALUµÄ²Ù×÷Âë
-);
-
-    // ×´Ì¬±àÂë¶¨Òå
-    parameter Idle = 5'd0, S1 = 5'd1, S2 = 5'd2, S3 = 5'd3, S4 = 5'd4,
-              S5 = 5'd5, S6 = 5'd6, S7 = 5'd7, S8 = 5'd8, S9 = 5'd9,
-              S10 = 5'd10, S11 = 5'd11, S12 = 5'd12, S13 = 5'd13, S14 = 5'd14;
-
-    reg [4:0] ST, Next_ST; // µ±Ç°×´Ì¬ºÍÏÂÒ»×´Ì¬
-
-    // ×´Ì¬¼Ä´æÆ÷£ºÔÚÊ±ÖÓÉÏÉıÑØ»ò¸´Î»Ê±¸üĞÂµ±Ç°×´Ì¬
-    always @(posedge clk or posedge rst_n) begin
-        if (rst_n)
-            ST <= Idle;         // ¸´Î»½øÈë Idle
-        else
-            ST <= Next_ST;      // Õı³£×´Ì¬×ªÒÆ
-    end
-
-    // ´ÎÌ¬Âß¼­×éºÏÅĞ¶Ï
-    always @(*) begin
-        case (ST)
-            Idle: Next_ST = S1; // ³õÊ¼×´Ì¬½øÈëS1×¼±¸¸üĞÂPC
-            S1: begin
-                // ¸ù¾İÖ¸ÁîÀàĞÍ¾ö¶¨ºóĞø×´Ì¬
+                // æ ¹æ®æŒ‡ä»¤ç±»å‹å†³å®šåç»­çŠ¶æ€
                 if (IS_JAL)     Next_ST = S11;
                 else if (IS_SW) Next_ST = S2;
                 else if (IS_JALR) Next_ST = S2;
@@ -288,37 +80,37 @@ module CU (
                 else            Next_ST = S1;
             end
             S2: begin
-                // ²»Í¬ÀàĞÍ½øÈë²»Í¬Ö´ĞĞ½×¶Î
+                // ä¸åŒç±»å‹è¿›å…¥ä¸åŒæ‰§è¡Œé˜¶æ®µ
                 if (IS_BEQ)     Next_ST = S13;
                 else if (IS_R)  Next_ST = S3;
                 else if (IS_IMM)Next_ST = S5;
                 else if (IS_SW || IS_JALR || IS_LW) Next_ST = S7;
                 else            Next_ST = S2;
             end
-            S3, S5: Next_ST = S4; // RĞÍºÍIĞÍÖ¸ÁîÖ´ĞĞºóĞ´»Ø
-            S6:     Next_ST = S1; // LUIÖ¸ÁîÁ¢¼´Ğ´»ØºóÍê³É
-            S4:     Next_ST = S1; // Õı³£Ğ´»Øºó½øÈëIdle
+            S3, S5: Next_ST = S4; // Rå‹å’ŒIå‹æŒ‡ä»¤æ‰§è¡Œåå†™å›
+            S6:     Next_ST = S1; // LUIæŒ‡ä»¤ç«‹å³å†™å›åå®Œæˆ
+            S4:     Next_ST = S1; // æ­£å¸¸å†™å›åè¿›å…¥Idle
             S7: begin
-                // Store, Load, JALR×¼±¸½×¶Î
+                // Store, Load, JALRå‡†å¤‡é˜¶æ®µ
                 if (IS_LW)      Next_ST = S8;
                 else if (IS_SW) Next_ST = S10;
                 else if (IS_JALR)Next_ST = S12;
                 else            Next_ST = S7;
             end
-            S8:     Next_ST = S9;   // ¶ÁÈ¡ÄÚ´æºó×¼±¸Ğ´»Ø
-            S9:     Next_ST = S1; // LWĞ´»ØÍê³É
-            S10:    Next_ST = S1; // SWÍê³É
-            S11:    Next_ST = S1; // JALÍê³É
-            S12:    Next_ST = S1; // JALRÍê³É
-            S13:    Next_ST = S14;  // BEQ±È½Ïºó¾ö¶¨Ìø×ª
-            S14:    Next_ST = S1; // BEQÌø×ªÍê³É
+            S8:     Next_ST = S9;   // è¯»å–å†…å­˜åå‡†å¤‡å†™å›
+            S9:     Next_ST = S1; // LWå†™å›å®Œæˆ
+            S10:    Next_ST = S1; // SWå®Œæˆ
+            S11:    Next_ST = S1; // JALå®Œæˆ
+            S12:    Next_ST = S1; // JALRå®Œæˆ
+            S13:    Next_ST = S14;  // BEQæ¯”è¾ƒåå†³å®šè·³è½¬
+            S14:    Next_ST = S1; // BEQè·³è½¬å®Œæˆ
         endcase
     end
 
-    // ¿ØÖÆĞÅºÅÊä³öÂß¼­
+    // æ§åˆ¶ä¿¡å·è¾“å‡ºé€»è¾‘
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
-            // ËùÓĞ¿ØÖÆĞÅºÅÇåÁã
+            // æ‰€æœ‰æ§åˆ¶ä¿¡å·æ¸…é›¶
             PC_Write   <= 0;
             PC0_Write  <= 0;
             PC_s       <= 2'b00;
@@ -329,7 +121,7 @@ module CU (
             rs2_imm_s  <= 0;
             w_data_s   <= 2'b00;
         end else begin
-            // Ä¬ÈÏÀ­µÍËùÓĞ¿ØÖÆĞÅºÅ
+            // é»˜è®¤æ‹‰ä½æ‰€æœ‰æ§åˆ¶ä¿¡å·
             PC_Write   <= 0;
             PC0_Write  <= 0;
             PC_s       <= 2'b00;
@@ -341,9 +133,9 @@ module CU (
             w_data_s   <= 2'b00;
 
             case (Next_ST)
-            // ---------- S1£ºPC ¡û PC+4£¬PC0 ¡û PC ----------
+            // ---------- S1ï¼šPC â† PC+4ï¼ŒPC0 â† PC ----------
             S1: begin
-                IR_Write <= 1;  // È¡Ö¸
+                IR_Write <= 1;  // å–æŒ‡
                 PC_Write  <= 1;
                 PC0_Write <= 1;
                 PC_s      <= 2'b00;
